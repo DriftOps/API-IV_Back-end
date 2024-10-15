@@ -10,7 +10,7 @@ interface User {
   senha: string;
 }
 
-class CRUD {
+class CRUDUser {
   async create(user: User) {
     const query = 'INSERT INTO jjm_users SET ?';
     const result = await db.execute(query, user);
@@ -41,4 +41,4 @@ class CRUD {
   }
 }
 
-export default CRUD;
+export default CRUDUser;
