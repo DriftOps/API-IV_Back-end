@@ -23,6 +23,16 @@ VALUES
 
 select * from jjm_users;
 
+-- Criar tabela de responsáveis
+CREATE TABLE IF NOT EXISTS responsaveis (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,                   -- Nome do responsável
+    email VARCHAR(100) NOT NULL UNIQUE,           -- Email do responsável (único)
+    telefone VARCHAR(20),                         -- Telefone do responsável
+    cargo VARCHAR(50),                            -- Cargo do responsável
+    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Data de registro do responsável
+);
+
 -- Criar tabela de processos
 CREATE TABLE IF NOT EXISTS processos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,16 +45,6 @@ CREATE TABLE IF NOT EXISTS processos (
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Data e hora da criação do processo
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Data e hora da última atualização do processo
     FOREIGN KEY (responsavel_id) REFERENCES responsaveis(id) ON DELETE CASCADE
-);
-
--- Criar tabela de responsáveis
-CREATE TABLE IF NOT EXISTS responsaveis (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,                   -- Nome do responsável
-    email VARCHAR(100) NOT NULL UNIQUE,           -- Email do responsável (único)
-    telefone VARCHAR(20),                         -- Telefone do responsável
-    cargo VARCHAR(50),                            -- Cargo do responsável
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Data de registro do responsável
 );
 
 -- Criar tabela de logs (opcional) para rastrear alterações nos processos
